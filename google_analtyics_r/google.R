@@ -11,5 +11,15 @@ ga_auth()
 account_list <- ga_account_list()
 
 ## pick a profile ID with data to query
-ga_id <- account_list[1,'viewId']
-ga_id <- ga_account_list()$viewId[1]
+# my_id <- account_list[1,'viewId']
+my_id <- ga_account_list()$viewId[1]
+
+start_date <- '2016-04-01'
+end_date <- '2016-09-30'
+metrics.topic <- c('pageviews', 'sessions', 'bounceRate', 'totalConversions')
+dimensions.topic <- c('date', 'hour', 'minute', 'pagePath', 'source', 'medium',
+    'landPagePath')
+
+# page view query
+page_views <- google_analytics(my_id, date_range = c(start_date, end_date),
+    metrics = metrics.topic[1], dimensions = dimensions.topic[1])
