@@ -1,0 +1,431 @@
+        MET CS688 C1
+WEB ANALYTICS AND MINING
+   Z L AT KO V A S I L KO S K I
+        GOOGLE ANALYTICS
+                                   Disappearing Data
+• From Boston Globe (Preserving Movies)
+   – “By one back-of the-envelope estimate, the number of digital photos we snap in two minutes exceeds all
+     the photographs taken during the entire 19th century.”
+   – “Tucked away in temperature-controlled vaults, master reels of classics like “Dr. Strangelove” and “Star
+     Wars” have a high chance of surviving for hundreds of years.”
+   – “But now that filmmaking has gone digital, a new threat to cinema history has surfaced. Preserving digital
+     artifacts.”
+   – “The cloud isn’t yet robust enough for long-term archival of complex datasets and gigantic master movie
+     files.”
+   – “The problem of preservation is not unique to the film industry. From scientific papers published up to 80%
+     of raw data collected for studies in the early 1990s is lost.”
+   – “Lost data also plagues the legal world.”
+                                     Disappearing Data
+• “Not everything is worth saving for the long haul.”
+• “Even if we could save all data in the cloud, we would have to invest in annotating data to create searchable
+  archives that save useful knowledge for people in the future.”
+• “Saving scientific data poses similar economic challenges.”
+                                           Interesting Links
+BBC Chinese police spot suspects with surveillance sunglasses
+http://www.bbc.com/news/world-asia-china-42973456
+                                          Interesting Links
+ NPR In An Era Of Fake News, Advancing Face-
+Swap Apps Blur More Lines
+https://www.npr.org/2018/02/03/582767531/in-
+an-era-of-fake-news-advancing-face-swap-apps-
+blur-more-lines
+                              Review of Used Terms
+Terms used:
+• Page - a web document (HTML, text, video files etc.), excludes image files (hits).
+• PageView - a page loaded by a browser when a visitor types the URL. GA logs a pageview each time
+   the tracking code is executed.
+• Pages/visit - Number of web pages viewed in a particular visit.
+• Bounce - Single page viewed by the visitor who leaves promptly.
+• Average Time on Site – Duration of site visit.
+• New Visits – page accessed for the first time by a web browser (GA identification by the web
+   browser. By setting a cookie).
+                                             Keywords Used
+• Loyalty (visitor behavior): Loyal visitors are frequently highly engaged with your brand, and a high number of visits
+  indicates good customer/visitor retention. A high number of new visitors indicates strong visitor recruitment.
+• Recency (visitor behavior): The frequency with which visitors return to your site can indicate their level of engagement
+  with your brand and their readiness to buy.
+• Length of Visit (visitor behavior): Length of visit is a measure of visit quality. A large number of lengthy visits suggests
+  that visitors have interacted more extensively with your site. The graph allows you to visualize the entire distribution of
+  visits instead of simply the average time on site taken from all visits. Keep in mind that the average time on site is
+  skewed by visitors leaving browser windows open when they are not actually viewing or using your site. You can see
+  whether a few visits are skewing the average time on site upward or whether most visits to your site have a long
+  average time.
+• Depth of Visit (visitor behavior): Depth of visit is a measure of visit quality. A large average number of pageviews per
+  visit suggests that visitors interact extensively with your site. The graph allows you to visualize the entire distribution of
+  visits instead of simply the average pageviews per visit. You can see whether a few visits are skewing your average
+  upward or whether most visits to your site result in a high number of pages being viewed.
+• Browsers (browser capabilities): Which browsers do your visitors use? Optimizing your site with the appropriate
+  technical capabilities helps make your site more engaging and usable and can result in higher conversion rates and
+  more sales.
+                                       Web Analytics
+• Collecting relevant raw web data .
+• Understand significance contained in the data.
+• Analysis is used for understanding and optimizing the web usage.
+• Also measuring web traffic can be used as a tool for business and market research.
+• Two categories of web analytics
+   – Off-site web analytics measures on data gathered from sites other than your own (Internet as a
+      whole) and measures potential website audience, including social media.
+        • Used to understand how to market your site by identifying the keywords tagged to your site,
+           either from social media or from other websites.
+   – On-site web analytics measure the actual visitor traffic arriving on your website such as
+        • Performance of your website in a commercial context
+        • Web page associated with online purchases
+        • Audience response to your marketing campaign
+                                    Log Files vs. Page Tagging
+•   Two unique on-site methodologies used by analytics tools to collect web visitor-analytics data.
+     1. Log files approach
+     2. Page tags approach
+ 1. Log files approach (server-side data-collection methodology)
+      – All requests for web pages, images, PDFs made to your web server are captured.
+      – Data is collected by your web server and is independent of a visitor's browser.
+      – Advantages of log file approach is that it is not affected by firewalls or software that can block page
+         tags. Also it can differentiate between a complete download and a partial download.
+ 2. Page tags approach
+     –  Motivation to perform web analytics as an outsourced service + corrects the accuracy of log file.
+     –  Involves the tagging of the web pages with special JavaScript.
+     –  A remote server captures all the tagged pages and will report the analytics to you.
+     –  Google Analytics uses this approach to collect web visitor-analytics data.
+                                          Google Analytics
+• Standard (and free) tool for generating web analytics reports.
+• It uses a page-tag approach for capturing analytics data,
+    – Special JavaScript needs to be installed (tagged) in each web pages.
+• It provides the means to track traffic, analyze it, and report useful metrics, such as site visits,
+  marketing goals achieved, ad revenues generated etc.
+• It is used in organizations of all sizes.
+• You can install Google Analytics on a personal website and begin using it
+    – to track visitors
+    – create goals
+    – measure success
+                  Introduction to Google Analytics
+• Google Analytics is a page-tag approach to capturing analytics data.
+• Free tool that has the following functional uses:
+   – Identify visitors or groups of visitors that became customers.
+   – See which pages drive the most pageviews on your site. The Top Content report can answer
+      questions you have about your most or least effective pages.
+   – Review data for online advertising campaigns by tracking landing-page quality and conversions
+      (goals), and pick out your best-performing ads.
+   – Grant other people in your company or organization designing or viewing access to reports. You
+      can also authorize an entire account, with administrator privileges, for anyone you want.
+   – See live analytics as customers are interacting with your web site.
+   – Study the location your visitors are coming from and what devices they are using (e.g.,
+      smartphones or desktops).
+   – Leverage more than 80 reports with customizable templates.
+                    Introduction to Google Analytics
+• Examples of Google Analytics metrics:
+   – Daily visitors to your site
+   – Average conversion rate
+   – Top visited pages
+   – Average visit time on the web site
+   – How often visitors come back
+   – Average visit’s page depth
+   – Geographic distribution of visitors
+   – Bounce rate
+• As part of a Assignment project you will need to
+   – Create and use a Goggle web site.
+   – Set up Google Analytics on your web site.
+   – Present your analytics
+             How Does Google Analytics Work?
+• Data about visitors is collected from desktop computers and devices and stored in
+  large Google company databases.
+• When we log into Google Analytics, we open up such a reporting database and
+  review the analytics data collected.
+• This process does not involve the active participation of the web server that hosts
+  the web site.
+• Depending on how much traffic you have, there will inevitably be some variance in
+  how long it takes from the time a visitor views a web page on your company server
+  to when Google reports the analytics data.
+              How Does Google Analytics Work?
+• According to Google, there are four main components to the Google Analytics
+  system:
+   – data collection,
+   – configuration,
+   – data processing, and
+   – reporting.
+                   How Does Google Analytics Work?
+Collection
+    – You can collect data from any digitally connected environment, including a kiosk or a point-of-sale (POS)
+       system.
+    – To track a web site, Google Analytics uses a small piece of JavaScript code, which tracks user engagement.
+    – You must place this piece of code on every page of the web site.
+    – When a user arrives at your web site, this JavaScript code will collect various pieces of information about
+       how the user engages with your site. This process will be introduced in the next section.
+Processing
+    – JavaScript collects information about the web site, the browser or device, and the referring source and sends
+       it to the Google servers for processing.
+    – This is the “transformation” step in which the raw data becomes useful information.
+    – For example, during data processing, Google Analytics will categorize users' devices as mobile or non mobile.
+                 How Does Google Analytics Work?
+Configuration
+   – In this step, Google Analytics applies any configuration settings you have identified to the raw data.
+   – For example, you may have used a filter to exclude data from your own internal users, as such data would
+      produce inflated results.
+   – Once the data is processed, it is inserted into Google’s analytics database. Such recording of data is
+      permanent and can’t be changed
+Reporting
+   – The last component of the Google Analytics platform is reporting.
+   – A simple-to-use web interface found at www.google.com/analytics makes it possible to retrieve data from
+      your organization’s Google Analytics account.
+                    Defining Basic Analytics Metrics
+• In analytics it is essential to know which numbers are important and why.
+• Note that the metric focuses on “Why”.
+• Basic Analytics Metrics
+   1.  Visits and Visitor Sessions
+   2.  Referrals
+   3.  Bounce & Exit Rate
+   4.  Conversion Rate
+   5.  Engagement
+   6.  SEO, Social Media, Emails and Metrics
+                            1. Visits and Visitor Sessions
+• Visitor - an individual (not necessarily a human) or device such as browser which accesses a
+  Web site within a specific time period.
+   •   Unique visitor within a specific reporting period (no double counting).
+• Visit (Sessions) – an interaction with a data source (examp: text and/or graphics downloads)
+  from a single browser (device) during a single session.
+    –   A visit can consist of a series of page views that a single visitor makes during a period of browsing
+       activity. A visit ends after the visitor closes the browser, clears cookies, or is inactive for 30 minutes
+       (customizable time period).
+    –  During each visit, users will engage in one or more interactions with the web site pages.
+    –  Analytics software will automatically track these interactions as “pageviews.” The pageview metric
+       increases every time a page is viewed on your site. Other activity, like watching a video, mouse
+       position, etc. can also be tracked. Such activities are better classified as “events” rather than
+       pageviews.
+    –  Cookie (persistent or session) is a file on the user’s device that identifies the user’s unique browser.
+    –  Tracking code looks for cookies. If a cookie is deleted or blocked
+       incorrectly counts unique visitors.
+            2. Referrals - Where do visitors come from?
+• Referrals indicate the place from which the user clicked to get to the current page.
+• It is a valuable to know how someone found our web site. Was it
+    –   through a search engine
+    –   positive review
+    –   social-media talk
+    –   email or e-newsletters
+• Referrals are the lifeline for marketing advertisements.
+• It's important to know which campaigns helped draw in new visitors or succeeded in getting loyal customers.
+                                 3. Bounce and Exit Rate
+• Bounce rate and the exit rate measure whether users find a web site or a web page useful.
+• Bounces are counted for users who land on a page and leave immediately. They do not see the page content.
+• Reasons can be site-design or usability issues or many other reasons.
+• Typically expressed as percentage of single-page sessions.
+• If the exit rate is high, the exit-rate metric can be meaningless, and it should not matter.
+• Useful to find out if visitors are abandoning the site at a certain point in the middle of an e-commerce
+  transaction.
+                                 4. Conversion Rate
+• In the context of studying goals and outcomes, this metrics is a significant one.
+• The conversion rate (as a percentage), is defined as
+                             conversion rate = outcome/unique visits * 100
+• An example of an outcome could be something very simple like clicking on ads or coupons or
+  subscribing to a newsletter.
+• Should we use Unique Visitors (browsers) or Visits?
+• Common for a unique visitor to visit the same page many times (purchase).
+• In this context conversion rate measures the process of converting a visitor into a buyer.
+• Conversion rate can be calculated automatically by integrating analytics software with shopping
+  carts.
+                                       5. Engagement
+• This is a qualitative metric hard to measure. The definition can be fuzzy.
+• Most analytics software will track event and visit duration.
+• This does not provide any information about the quality of engagement.
+• What it matters is the time a visitor spends on a web site with engagement.
+• The challenge is to distinguish between
+   – Reading the information on a web page or
+   – Looking for the information and not being able to find it.
+• Example: Google Analytics tools allow us to research engagement
+   – In-Page Analytics (visual assessment of how users interact with your web pages)
+   – Behavior Flow analytics (visualizes the path users traveled from one page or event to the next).
+• Both of these contribute to Engagement statistics.
+• More on Google Analytics in the next module.
+ Donald Trump Organization (Dana McDonough)
+                          • I did my website on Donald
+                            Trump in hopes to receive a
+                            significant amount of traffic
+                            at my site
+                          • The site consists of a Home
+                            Page, 4 additional pages,
+                            and an additional page with
+                            an attached PDF available
+                            for download
+ Goal 1 (Dana McDonough)
+  My first Goal was a conservative goal to hit a duration of greater than 3 seconds per
+   session
+  The conversion rate is at 70.59%
+ Goal 2 (Dana McDonough)
+ My second Goal was a conservative goal to hit greater than 2 page/screen views per
+  session
+ The conversion rate is at 52.94%
+   Location reporting
+ All locations reflect classmates in the New England area
+ Another Example (Ning Hua)
+• Friend’s professional Web Site: http://www.bluethreadbridal.com/
+                Regarding Google Analytics Assignment
+• For the Google Analytics Assignment you can create a
+   – Goggle web site
+   – or you can choose to create the website somewhere else (Dropbox, OneDrive, etc.).
+• Simple enough web site (not a big project) but to fulfill the assignment requirements.
+• Also you would need time to build access statistics, as a suggestion share the websites among each
+  other so you can have variety of access statistics and try to use different devices.
+• Considering that it takes 24 hours for the analytics to work, and your mutual involvement building
+  this analytics, let’s try to finish Google Analytics Assignment at the same time.
+                     Create a test Goggle web site
+• Here is an illustration of a simple
+  web site
+   – containing only a “Hello!“ index page and
+   – a link to a “Documents” page containing
+   – a pdf file ready for download.
+• Go to: sites.google.com click
+  “Create” and name your page.
+   – Click on the newly created site
+   – Click on the “Pen” tool to edit your index
+     page
+   – Add some text that later you are going to
+     link to the other page
+                    Create a test Goggle web site
+• Use “Create Page” to add the
+  “Documents” page.
+   – Add some text
+   – Click “ADD FILES” to add a PDF file
+   – Add some PDF file from your computer
+                 Create a test Goggle web site
+• Add a link from the index “Hello!”
+  page to the “Documents” page.
+   – Use the “Add or Remove Link” tool
+ Note
+• Google Analytics will not track how
+  many times people download PDFs or
+  other file types.
+• For your assignment,
+   – either avoid a download as a goal that
+     you would monitor
+   – or figure out the ways around it as
+     described online.
+ Create a new Analytics Account for your web site
+• A good step by step explanation: https://support.google.com/sites/answer/97459?hl=en
+• In your Google Analytics account select the Admin tab. Create a new Analytics account (for each of your
+  sites).
+• Account Name: Choose what you want to call this account.
+• Website Name: Choose what you want to call the website you're tracking.
+• Website URL: Enter the URL for the site you're tracking (the one you have just created).
+• Click Get Tracking ID ("UA-XXXXXXXX-X" ).
+                       Configure Google Analytics
+                                   to your web site
+Two slightly different steps:
+1. Configure Google Analytics for Google Sites.
+    – You just need to add the Tracking ID ("UA-XXXXXXXX-X") to your Google web site.
+    – Google web site will automatically place it on all of your pages on your Google web site.
+2. Configure Google Analytics to any other web site.
+    – You need to paste (by hand) the JavaScript code into every webpage you want to track on your web site.
+   1. Configure Google Analytics for Google Sites
+• After you create your new Google Analytics
+  account, you will be directed to you Google
+  Analytics profile screen, where the name of
+  your tracked site should appear, followed by a
+  Google Analytics account number in the format,
+  'UA-XXXXXXXX-X' Copy this code - known as
+  your Analytics Web Property ID - and go to the
+  site that you want to track with Google
+  Analytics.
+• On your site, click the Settings icon in the top-
+  right and select Manage Site.
+  1. Configure Google Analytics for Google Sites
+• Under the Site Settings section, click General.
+• Click the drop-down menu below "Statistics"
+  and switch to Use Google Analytics.
+• Enter your Analytics Web Property ID (UA-
+  XXXXXXXX-X) in the associated box.
+• Click "Save“ changes.
+• In 24 hours or less the Google analytics for
+  your Google web site will work.
+ 2. Configure Google Analytics for any other web
+                                             site
+• I’ll illustrate by creating the same web site on Dropbox.
+   – containing only a “Hello!“ index page and
+   – a link to a “Documents” page containing
+   – a pdf file ready for download.
+                          Create a web site
+• I used a text editor to create the simple
+    – index page with a link to
+    – the “Documents” page with a link to
+    – a pdf file ready for download
+• All of these 3 files (index.html, pdfdocuments.html and tm.pdf) are in the same folder!
+                             Get the JavaScript code
+• From Google analytics page
+   – Select the Analytics account you want to use (Assignment 2)
+   – Click Tracking Info/Tracking Code
+   – Copy the JavaScript code
+     Insert the JavaScript code in your web pages
+• Paste the Google Analytics JavaScript code snippet into the bottom of the content, immediately before the
+  "</body>" tag on every page on the site you want to track.
+• In 24 hours or less the Google analytics of your web site will work.
+                         Selecting Date Range
+• Selecting time period
+  for audience overview
+  analytics
+• Location
+                           Real Time Active Users
+• Desktop & Mobile
+• Location
+• Try to share and access
+  each other’s web sites
+  to build more diverse
+  statistics.
+                         Web Analytics
+• Select Mobile Only
+• Try to share and
+  access each other’s
+  web sites to build
+  diverse statistics.
+• Also try to use
+  different devices for
+  access if possible
+                        GA Assignment Suggestions
+• Design your web site to be just complex enough so you can answer the requirements of Assignment.
+   – Create a specific goal (or goals) , so you can describe the goal funnels.
+   – The idea behind manual or auto tagging is to bring in new website visitors and minimize bounce rates by
+     tailoring landing pages to each keyword.
+   – Regarding e-commerce you can consider the click button that you place on your website for download to be
+     books or any other item that you may sell. Of cause do not place documents of importance containing
+     information that you would not like to share. Depending on the topic you choose just within hours or days
+     your web site will be visited by large number of people from everywhere.
+                                          GA Assignment
+• Create a web site (or use friend’s website)
+   – Goggle Sites or
+   – Any other
+• Design your web site to be just complex enough so you can answer the requirements of Assignment.
+   –  Attach Google Analytics to your website
+   –  Create a goals, according to the function of your website.
+   –  Collect traffic to your website
+   –  Create report of the visitors to your website.
+• Present your report in 5-10 min.
+• Submit on blackboard:
+   – PPT (or similar format) version (few slides is enough) of your report.
+   – Include your name on the first slide!
+                      How to Set Up/Create Goals
+• Before Google Analytics can give you reports about a goal, you must define the goal within your
+  account. You can create up to twenty goals in each Google Analytics profile.
+• To set up your goals:
+• Click the "Admin" option in the tool-bar at the top of the page.
+                         How to Set Up/Create Goals
+• Click the "Goals" option under the "All Web Site Data" tab on the right hand side
+                  How to Set Up/Create Goals
+• Click the " +New Goal " option highlighted in red
+                  How to Set Up/Create Goals
+• Select a template with a pre-filled configuration or choose a custom option to define
+  the kind of goal that you want to setup.
+         How to Set Up/Create Goals
+• Fill in the Goal description details
+                  How to Set Up/Create Goals
+• Enter the goal details & then click on " Create Goal " option at the bottom
+                     How to Set Up/Create Goals
+• Once you click on the Create goal option you can view your goal on the following page which looks
+  like this:
+                      How to Set Up/Create Goals
+• You can create more goals by clicking the +New Goal option. Note that the limit on the number of
+  goals you can create for every Goal ID is 20.
+                        GA Assignment Suggestions
+• Design your web site to be just complex enough so you can answer the requirements of Assignment.
+   – Create a goals , so you can describe the goal funnels.
+   – The idea behind manual or auto tagging is to bring in new website visitors and minimize bounce rates by
+     tailoring landing pages to each keyword.
+   – Regarding e-commerce you can consider the click button that you place on your website for download to be
+     books or any other item that you may sell. Of cause do not place documents of importance containing
+     information that you would not like to share. Depending on the topic you choose just within hours or days
+     your web site will be visited by large number of people from everywhere.
+  
