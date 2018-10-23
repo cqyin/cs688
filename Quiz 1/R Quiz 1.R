@@ -42,6 +42,8 @@ class(x1)
 # Q10: (1 point) Assign to object zn ONLY the numeric elements of x1.
  # -1.0  1.5  6.5  9.0
 zn <- as.numeric(x1[!is.na(as.numeric(x1))])
+# answer
+zn <- as.numeric(x1[-3])
 
 # Q11: (2 points) Execute "x2 <- as.numeric(x1)" and write a line of code to find the max value of x2.
  # 9
@@ -56,6 +58,9 @@ max(x2, na.rm = TRUE)
 # Q12: (2 points) Use the factor() function to find what are the possible values of “gear” in the "mtcars" dataset. 
  # "3" "4" "5"
 factor(mtcars$gear)
+
+# answer
+levels(factor(mtcars$gear))
 
 
 # Q13: (3 points) Create a data frame that sumarizes how many cars are there for each number of forward gears.
@@ -78,6 +83,15 @@ zstr <- "Given a string of characters zstr, find  the frequency of each characte
 # 12  1  1  6  6  1  7  4  1  1  4  3  4  2  1  7  3  5  1  1  1  1  
 table(strsplit(zstr, NULL))
 
+# one answer
+z <- unlist(strsplit(zstr, NULL)); table(z)
+
+# another answer
+library(magrittr)
+unlist(strsplit(zstr, "")) %>% table
+# can also unpack the rest of the nested func calls
+strsplit(zstr, "") %>% unlist %>% table
+
 
 # Execute the following code:  
 TextData1 <- c("asd","qwer","zsdb")
@@ -86,6 +100,8 @@ Pattern <- "sd+"
 # Q15: (5 points) Write a line of code that will give the indices of elements in TextData2 that are also present in TextData1
  # 1 2
 which(TextData1 == intersect(TextData1, TextData2))
+# answer (similar, same?, result)
+which(TextData2 %in% TextData1)
 
 
 # Q16: (5 points) Write a line of code that will give the indices of elements in TextData2 that are matched by the string "Pattern"
@@ -98,6 +114,11 @@ Is.Full.Sq <- function(n) {
     return(FALSE)
   }
   return(sqrt(n) - floor(sqrt(n)) == 0)
+}
+
+# answer
+Is.Full.Sq <- function(n) {
+  return(n %% sqrt(n) == 0)
 }
 
 # +20 Points === Total 45
@@ -138,7 +159,8 @@ Mean.Pi <- function(element) {
 # [2,] 28.14159
 # [3,] 91.64159
 
-
+# answer
+z <- do.call('rbind', lapply(My.Id.List, function(x) Mean.Pi(x$Score)))
 
 
 
