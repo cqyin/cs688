@@ -6,10 +6,17 @@ rm(list=ls()); cat('\014')
 library(tm)
 library(class)
 
-Doc1.TrainPath <- system.file("texts", "20Newsgroups/20news-bydate-train/sci.space", package = "tm")
-Doc1.TestPath <- system.file("texts", "20Newsgroups/20news-bydate-test/sci.space", package = "tm")
-Doc2.TrainPath <- system.file("texts", "20Newsgroups/20news-bydate-train/rec.autos", package = "tm")
-Doc2.TestPath <- system.file("texts", "20Newsgroups/20news-bydate-test/rec.autos", package = "tm")
+# answers
+newsgroup1 <- 'sci.space'
+newsgroup2 <- 'rec.autos'
+
+Doc1.TrainPath <- system.file('texts', '20Newsgroups/20news-bydate-train/sci.space', package = 'tm')
+# answer
+Doc1.TrainPath <- system.path('texts', '20Newsgroups', '20news-bydate-train', newsgroup1, package = 'tm')
+
+Doc1.TestPath <- system.file('texts', '20Newsgroups/20news-bydate-test/sci.space', package = 'tm')
+Doc2.TrainPath <- system.file('texts', '20Newsgroups/20news-bydate-train/rec.autos', package = 'tm')
+Doc2.TestPath <- system.file('texts', '20Newsgroups/20news-bydate-test/rec.autos', package = 'tm')
 
 Temp1 <- DirSource(Doc1.TrainPath)
 Temp2 <- DirSource(Doc2.TrainPath)
@@ -31,10 +38,10 @@ getTransformations()
 doc.transf <- tm_map(doc, removePunctuation)
 doc.transf <- tm_map(doc.transf, stemDocument)
 doc.transf <- tm_map(doc.transf, stripWhitespace)
-doc.transf <- tm_map(doc.transf, removeWords, stopwords("english"))
+doc.transf <- tm_map(doc.transf, removeWords, stopwords('english'))
 
 dtm <- as.matrix(DocumentTermMatrix(doc.transf, control = list(wordLengths = c(2, Inf))))
-Tags <- factor(c(rep("Sci", 100), rep("Rec", 100)), levels=c("Sci", "Rec"))
+Tags <- factor(c(rep('Sci', 100), rep('Rec', 100)), levels=c('Sci', 'Rec'))
 
 train.doc <- dtm[c(1:100, 201:300),]
 test.doc <- dtm[c(101:200, 301:400),]
@@ -55,13 +62,13 @@ sum(prob.test == Tags) / length(Tags)
 (table(prob.test, Tags) -> AutoCM)
 
 # manual confusion matrix
-RecClassified <- (prob.test == Tags)[101:200] # Classified as "Rec" (Positive)
+RecClassified <- (prob.test == Tags)[101:200] # Classified as 'Rec' (Positive)
 SciClassified <- (prob.test == Tags)[1:100]
-TP <- sum(RecClassified == "TRUE") # Actual "Rec" classified as "Rec"
-FN <- sum(RecClassified == "FALSE")
-FP <- sum(SciClassified == "FALSE")
-TN <- sum(SciClassified == "TRUE")
-(CM <- data.frame(Rec=c(TP,FN),Sci=c(FP,TN),row.names=c("Rec","Sci")))
+TP <- sum(RecClassified == 'TRUE') # Actual 'Rec' classified as 'Rec'
+FN <- sum(RecClassified == 'FALSE')
+FP <- sum(SciClassified == 'FALSE')
+TN <- sum(SciClassified == 'TRUE')
+(CM <- data.frame(Rec=c(TP,FN),Sci=c(FP,TN),row.names=c('Rec','Sci')))
 
 
 # precision
