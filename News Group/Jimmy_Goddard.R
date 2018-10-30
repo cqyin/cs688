@@ -11,6 +11,7 @@ newsgroup1 <- 'sci.space'
 newsgroup2 <- 'rec.autos'
 
 Doc1.TrainPath <- system.file('texts', '20Newsgroups/20news-bydate-train/sci.space', package = 'tm')
+
 # answer
 Doc1.TrainPath <- system.path('texts', '20Newsgroups', '20news-bydate-train', newsgroup1, package = 'tm')
 
@@ -24,11 +25,19 @@ Temp3 <- DirSource(Doc1.TestPath)
 Temp4 <- DirSource(Doc2.TestPath)
 
 
-Doc1.Train <- Corpus(URISource(Temp1$filelist[1:100]), readerControl=list(reader=readPlain))
-Doc2.Train <- Corpus(URISource(Temp2$filelist[1:100]), readerControl=list(reader=readPlain))
+Doc1.Train <- Corpus(
+    URISource(Temp1$filelist[1:100]), 
+    readerControl = list(reader = readPlain))
+Doc2.Train <- Corpus(
+    URISource(Temp2$filelist[1:100]), 
+    readerControl = list(reader = readPlain))
 
-Doc1.Test <- Corpus(URISource(Temp3$filelist[1:100]), readerControl=list(reader=readPlain))
-Doc2.Test <- Corpus(URISource(Temp4$filelist[1:100]), readerControl=list(reader=readPlain))
+Doc1.Test <- Corpus(
+    URISource(Temp3$filelist[1:100]), 
+    readerControl = list(reader = readPlain))
+Doc2.Test <- Corpus(
+    URISource(Temp4$filelist[1:100]), 
+    readerControl = list(reader = readPlain))
 
 doc <- c(Doc1.Train, Doc1.Test, Doc2.Train, Doc2.Test)
 
@@ -38,22 +47,51 @@ getTransformations()
 doc.transf <- tm_map(doc, removePunctuation)
 doc.transf <- tm_map(doc.transf, stemDocument)
 doc.transf <- tm_map(doc.transf, stripWhitespace)
+
+# answer (didn't have tolower in my transformations)
+doc.transf <- tm_map(doc.transf, content_transformer(tolower))
 doc.transf <- tm_map(doc.transf, removeWords, stopwords('english'))
 
-dtm <- as.matrix(DocumentTermMatrix(doc.transf, control = list(wordLengths = c(2, Inf))))
-Tags <- factor(c(rep('Sci', 100), rep('Rec', 100)), levels=c('Sci', 'Rec'))
+# dtm <- as.matrix(
+#     DocumentTermMatrix(
+#         doc.transf, 
+#         control = list(wordLengths = c(2, Inf))))
+
+dtm <- DocumentTermMatrix(
+    doc.transf, 
+    control = list(wordLengths = c(2, Inf)))
+
+# answer.  forgot to "bounds" which specifies the number of documents in which
+# terms must be found
+# dtm <- as.matrix(
+#     DocumentTermMatrix(
+#         doc.transf, 
+#         control = list(wordLengths = c(2, Inf), bounds = list(global = c(5, Inf)))))
+
+dtm <- DocumentTermMatrix(
+    doc.transf, 
+    control = list(wordLengths = c(2, Inf), bounds = list(global = c(5, Inf))))
+
+Tags <- factor(c(rep('Sci', 100), rep('Rec', 100)), levels = c('Sci', 'Rec'))
 
 train.doc <- dtm[c(1:100, 201:300),]
 test.doc <- dtm[c(101:200, 301:400),]
+
+# answer
+train.range = c(1:100, 201:300)
+test.range = c(101:200, 301:400)
+train.doc <- dtm[train.range,]
+test.doc <- dtm[test.range,]
+
 set.seed(0)
-prob.test<- knn(train.doc, test.doc, Tags, k = 2, prob=TRUE) 
+prob.test<- knn(train.doc, test.doc, Tags, k = 2, prob = TRUE) 
 a <- 1:length(prob.test)
 b <- levels(prob.test)[prob.test]
 c <- attributes(prob.test)$prob
 d <- prob.test == Tags
 
 # classification results
-(result <- data.frame(Doc=a, Predict=b, Prob=c, Correct=d))
+(result <- data.frame(Doc = a, Predict = b, Prob = c, Correct = d))
 
 # percentage of correct classifications
 sum(prob.test == Tags) / length(Tags)
@@ -68,14 +106,20 @@ TP <- sum(RecClassified == 'TRUE') # Actual 'Rec' classified as 'Rec'
 FN <- sum(RecClassified == 'FALSE')
 FP <- sum(SciClassified == 'FALSE')
 TN <- sum(SciClassified == 'TRUE')
-(CM <- data.frame(Rec=c(TP,FN),Sci=c(FP,TN),row.names=c('Rec','Sci')))
+(CM <- data.frame(Rec = c(TP, FN), Sci = c(FP, TN), row.names = c('Rec','Sci')))
 
 
 # precision
 (P <- 100 * TP / (TP + FP))
 
+# answer
+(P <- TP / (TP + FP))
+
 # recall
 (R <- 100 * TP / (TP + FN))
+
+# answer
+(R <- TP / (TP + FN))
 
 # F-score
 (f.score <- 2 * (P * R) / (P + R))
