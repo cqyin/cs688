@@ -23,7 +23,7 @@ shinyUI(fluidPage(
                  ),
     # Display Panel (Panel 3)
     mainPanel(
-      h1("Display Panel",align = "center"),
+      h1("Display Panel", align = "center"),
       plotOutput("distPlot")
       )
     )

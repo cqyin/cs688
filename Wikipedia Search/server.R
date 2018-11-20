@@ -3,7 +3,7 @@
 library(shiny)
 library(tm)
 library(stringi)
-library(proxy)
+# library(proxy)
 library(wordcloud)
 source("WikiSearch.R")
 

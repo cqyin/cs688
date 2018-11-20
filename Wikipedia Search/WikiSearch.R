@@ -39,5 +39,11 @@ SearchWiki <- function (titles) {
   dtm <- removeSparseTerms(dtm, 0.4)
   dtm$dimnames$Docs <- titles
   freq <- colSums(as.matrix(dtm)) # Term frequencies
+
+  # answer
+  ord <- order(freq, decreasing = TRUE)
+  ix <- head(ord, n = 50)
+  Top50 <- freq[ix]
+  # wordcloud(names(Top50), Top50, scale = c(4, 0.9), colors = ...)
 }
 
