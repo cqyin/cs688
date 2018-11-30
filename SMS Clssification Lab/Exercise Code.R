@@ -67,3 +67,6 @@ TN <- AutoCM[2, 2]
 # F-score
 (f.score <- 2 * (P * R) / (P + R))
 
+# accuracy
+((TP+TN)/(TP+TN+FP+FN))
+
