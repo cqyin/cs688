@@ -15,16 +15,28 @@ Forecast.Electric.Demand <- function (Raw_Data)
   print(paste0("Training data start date: ",Time.Stamp[StartTime]))
   
   # Extract Hours field from Time.Stamp
-  Hours <- rep(1,length(TrainRange)) # Replace this Line
+  Hours <- as.numeric(format(Time.Stamp, '%H'))
+  # Hours <- rep(1,length(TrainRange)) # Replace this Line
   # Insert your code here
   
   # Extract Days field from Time.Stamp
-  Day.Number <- rep(1,length(TrainRange)) # Replace this Line
+  Day.Date <- as.numeric(format(Time.Stamp, '%d'))
+  Day.Number <- as.numeric(format(Time.Stamp, '%w'))
+  Day.Number[Day.Number == 0] = 7
+  Day.Name <- weekdays(Time.Stamp)
+  # Day.Number <- rep(1,length(TrainRange)) # Replace this Line
   # Insert your code here
   
   # Modify Hours & Days
-  Hours.Modified <- Hours # Replace this Line
-  Day.Number.Modified <- Day.Number # Replace this Line
+  # Hours.Modified <- Hours # Replace this Line
+  # Day.Number.Modified <- Day.Number # Replace this Line
+  temp <- 12 - Hours
+  temp[temp >- 0] = 0
+  Hours.Modified <- Hours + 2 * temp
+  Day.Number.Modified <- Day.Number
+  Day.Number.Modified[Day.Number < 6] = 1
+  Day.Number.Modified[Day.Number == 6] = 2
+  Day.Number.Modified[Day.Number > 6] = 3
   # Insert your code here
   print("Extracting Hour_of_Day & Day_of_Week fields from the DATE field Time Stamp ")
   

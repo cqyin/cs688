@@ -8,6 +8,10 @@ Path.2.Files <- file.path("Data","OficeBuildingData.csv") # Path to CSV File
 InputData <- read.csv(Path.2.Files,stringsAsFactors = FALSE,
                       blank.lines.skip = TRUE,header=T) # Read CSV File
 
+# Read Data from CSV downloaded from FacilityConneX
+csv.file <- file.path('Data', 'FCX-Chart.csv')
+csv.data <- read.csv(
+  csv.file, stringsAsFactors = FALSE, blank.lines.skip = TRUE, header = TRUE)
 
 # Call Forecast Function to Train NN & Obtain Predictions
 Output <- Forecast.Electric.Demand(InputData)
@@ -20,7 +24,20 @@ Title <- paste(Title,paste0("(Train End Date is ", Output$TimeStamp[Range.to.Plo
 
 # ### ====== Claculate Residuals ====
 Y <- InputData$Electric.Demand..kW.; Yp <- unlist(Output$Predicted.Electric.Demand)
-R2 <- 1 - sum( (Yp-Y )^2 ) / sum( (Y-mean(Y) )^2 ) # Coeff of determination (R-squared)
+Y2 <- csv.data$Optimal.Electric.Demand.kWh..Student.013...Electric.Meter....kWh..
+Yp2 <- csv.data$Predicted.Electric.Demand.kWh..Student.013...Electric.Meter....kWh..
+Y2 <- Y2[-1] # remove first entry because in Yp2 it is NA
+Yp2 <- Yp2[-1] # remove NA
+
+# Coeff of determination (R-squared) for local csv data
+(R2 <- 1 - sum( (Yp-Y )^2 ) / sum( (Y-mean(Y) )^2 ))
+# [1] 0.6695009
+# Coeff of determination for data downloaded from FacilityConnex
+(R22 <- 1 - sum((Yp2 - Y2)^2) / sum((Y2 - mean(Y2))^2))
+# [1] 0.911256
+
+# That is a much higher R-squared value for the FCX generated data than for the local model
+
 Title <- paste0(Title,"; R Squared:",round(R2,2))
 
 
