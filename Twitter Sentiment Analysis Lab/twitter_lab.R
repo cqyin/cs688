@@ -63,25 +63,65 @@ sentiment <- function(text, pos.words, neg.words) {
   neg.matches <- match(words, neg.words)
   neg.matches <- !is.na(neg.matches)
   # calculate the sentiment score
-  score <- sum(pos.matches) - sum(neg.matches)
-  cat (" Positive: ", words[pos.matches], "\n")
-  cat (" Negative: ", words[neg.matches], "\n")
-  return (score)
+  p <- sum(pos.matches)
+  n <- sum(neg.matches)
+  if (p == 0 & n == 0) {
+    return(NA)
+  }
+  return(p - n)
 }
 
 sox.tag <- '#RedSox'
 yankees.tag <- '#Yankees'
 tweets.sox <- searchTwitter(sox.tag)
 tweets.yanks <- searchTwitter(yankees.tag)
-sox.data.corpus <- getCorpus(tweets.sox)
-yanks.data.corpus <- getCorpus(tweets.yanks)
+data.corpus1 <- getCorpus(tweets.sox)
+data.corpus2 <- getCorpus(tweets.yanks)
+
+data.trans.corpus1 <- preprocess(data.corpus1)
+data.trans.corpus2 <- preprocess(data.corpus2)
+
+tdm1 <- TermDocumentMatrix(data.trans.corpus1)
+tdm2 <- TermDocumentMatrix(data.trans.corpus2)
+
+FFT1 <- findFreqTerms(tdm1, lowfreq = 3)
+FFT2 <- findFreqTerms(tdm2, lowfreq = 3)
+wordFreq1 <- rowSums(as.matrix(tdm1))
+wordFreq2 <- rowSums(as.matrix(tdm2))
+
+palette <- brewer.pal(8, 'Dark2')
+set.seed(137)
+
+FFT1
+wordcloud(
+  words = names(wordFreq1),
+  freq = wordFreq1,
+  min.freq = 3,
+  random.order = FALSE,
+  colors = palette)
+
+FFT2
+wordcloud(
+  words = names(wordFreq2),
+  freq = wordFreq2,
+  min.freq = 3,
+  random.order = FALSE,
+  colors = palette)
 
 # Lexicons
 pos.words = scan('Data/positive-words.txt',
  what='character',
  comment.char=';')
 
-neg.words = scan('Data/negative-words.txt',  
- what='character', 
+neg.words = scan('Data/negative-words.txt',
+ what='character',
  comment.char=';')
 
+(sox.sentiment <- sentiment(lapply(tweets.sox, getText), pos.words, neg.words))
+(yanks.sentiment <- sentiment(lapply(tweets.yanks, getText), pos.words, neg.words))
+barplot(
+  c(sox.sentiment, yanks.sentiment), 
+  names.arg = c('Sox', 'Yanks'), 
+  col = c('red', 'blue'))
+
+# There appear to be far more negative words used in Yankees tweets than Red Sox tweets
