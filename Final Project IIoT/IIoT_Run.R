@@ -8,25 +8,28 @@ Path.2.Files <- file.path("Data","OficeBuildingData.csv") # Path to CSV File
 InputData <- read.csv(Path.2.Files,stringsAsFactors = FALSE,
                       blank.lines.skip = TRUE,header=T) # Read CSV File
 
+# Get data exported from FacilityConneX
+csv.file <- file.path('Data', 'FCX-Chart.csv')
+csv.data <- read.csv(
+  csv.file, stringsAsFactors = FALSE, blank.lines.skip = TRUE, header = TRUE)
+
 # Call Forecast Function to Train NN & Obtain Predictions
 Output <- Forecast.Electric.Demand(InputData)
 
+# ### ====== Claculate Residuals ====
+(R2 <- calculateRSquared(InputData$Electric.Demand..kW., unlist(Output$Predicted.Electric.Demand)))
+
+actual.csv <- csv.data$Optimal.Electric.Demand.kWh..Student.013...Electric.Meter....kWh..
+predicted.csv <- csv.data$Predicted.Electric.Demand.kWh..Student.013...Electric.Meter....kWh..
+actual.csv <- actual.csv[-1] # remove first entry because in predicted it is NA
+predicted.csv <- predicted.csv[-1] # remove NA
+(calculateRSquared(actual.csv, predicted.csv))
 
 # Plot Results
 Range.to.Plot <- seq(from = round(dim(InputData)[1]*(1-Output$Percent.To.Test)), to = dim(InputData)[1])
 Title <- "NN Trained to Model Office building Energy Consumption based on Temperature, Humidity and Dewpoint"
 Title <- paste(Title,paste0("(Train End Date is ", Output$TimeStamp[Range.to.Plot[1]]),")")
-
-# ### ====== Claculate Residuals ====
-Y <- InputData$Electric.Demand..kW.
-Yp <- unlist(Output$Predicted.Electric.Demand)
-
-
-# Coeff of determination (R-squared) for local csv data
-(R2 <- 1 - sum( (Yp-Y )^2 ) / sum( (Y-mean(Y) )^2 ))
-
 Title <- paste0(Title,"; R Squared:",round(R2,2))
-
 
 # ### ====== Plot Results ====
 library(plotly)
