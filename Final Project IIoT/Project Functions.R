@@ -1,9 +1,6 @@
 # Project Functions
 
 ### Pre-Process Data & Call Neural Network
-library(RcppBDT)
-library(timeDate)
-
 normalize <- function(x) {
   return((x - min(x)) / (max(x) - min(x)))
 }
@@ -59,24 +56,30 @@ getModelInputs <- function(InputData) {
   # the above literally has ZERO effect on the R2 score of the model
   # the below actually does positively affect the model's R2 score
 
-  Holidays <- as.numeric(isHoliday(timeDate(InputData$DATE)))
-  pres.day.2017 <- getNthDayOfWeek(third, Mon, Feb, 2017)
-  pres.day.2017.idx <- grep(pres.day.2017, Time.Stamp)
-  Holidays[pres.day.2017.idx] <- 1
-  pres.day.2016 <- getNthDayOfWeek(third, Mon, Feb, 2016)
-  pres.day.2016.idx <- grep(pres.day.2016, Time.Stamp)
-  Holidays[pres.day.2016.idx] <- 1
+  shouldCalculateHolidays = require('timeDate') & require('RcppBDT')
+  if (shouldCalculateHolidays) {
+    Holidays <- as.numeric(isHoliday(timeDate(InputData$DATE)))
+    pres.day.2017 <- getNthDayOfWeek(third, Mon, Feb, 2017)
+    pres.day.2017.idx <- grep(pres.day.2017, Time.Stamp)
+    Holidays[pres.day.2017.idx] <- 1
+    pres.day.2016 <- getNthDayOfWeek(third, Mon, Feb, 2016)
+    pres.day.2016.idx <- grep(pres.day.2016, Time.Stamp)
+    Holidays[pres.day.2016.idx] <- 1
 
-  thanksgiving.2016 <- getNthDayOfWeek(fourth, Thu, Nov, 2016)
-  thanksgiving.2016.idx <- grep(thanksgiving.2016, Time.Stamp)
-  Holidays[thanksgiving.2016.idx] <- 1
+    thanksgiving.2016 <- getNthDayOfWeek(fourth, Thu, Nov, 2016)
+    thanksgiving.2016.idx <- grep(thanksgiving.2016, Time.Stamp)
+    Holidays[thanksgiving.2016.idx] <- 1
+  }
 
   # Choose Data to Process
   Dependent.Ix <- c(2:4) # Select dependent columns
-  Dependent.Data <- cbind(Hours.Modified, Day.Number.Modified, Holidays, InputData[TrainRange, Dependent.Ix]) # X ()
-  # Dependent.Data <- cbind(Hours.Modified, Day.Number.Modified, InputData[TrainRange, Dependent.Ix]) # X ()
+
+  if (shouldCalculateHolidays) {
+    Dependent.Data <- cbind(Hours.Modified, Day.Number.Modified, Holidays, InputData[TrainRange, Dependent.Ix]) # X ()
+  } else {
+    Dependent.Data <- cbind(Hours.Modified, Day.Number.Modified, InputData[TrainRange, Dependent.Ix]) # X ()
+  }
   Dependent.Data <- as.data.frame(Dependent.Data)
-  # Norm.Dependent.Data <- as.data.frame(lapply(Dependent.Data, normalize))
   inputs <- as.data.frame(scale(Dependent.Data))
   print("Dependent data tags: ")
   print(names(inputs))
@@ -99,7 +102,6 @@ Forecast.Electric.Demand <- function(InputData)
   inputs <- getModelInputs(InputData)
   targets <- getModelTargets(InputData)
   Percent.To.Test <- 0.40 # Split the input data into train and test
-  # Percent.To.Test <- 0.30 # Split the input data into train and test
   print("Define NuNet Inputs: ")
   print(paste0("Percent of input data to test: ", 100 * Percent.To.Test, " %"))
 
