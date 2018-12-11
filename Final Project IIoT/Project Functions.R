@@ -24,9 +24,14 @@ getModelInputs <- function(InputData) {
   Time.Stamp <- strptime(InputData$DATE,"%m/%d/%Y %H:%M")
 
   # Select Training Range
+  # got range through grep('^2/\\d+/2017', InputData$DATE)
+  # StartTime <- 9529
+  # EndTime <- 10100
+  # TrainRange <- StartTime:EndTime
   StartTime <- 1
   TrainRange <- StartTime:Num.Data.Points
   print(paste0("Training data start date: ",Time.Stamp[StartTime]))
+  # Time.Stamp <- Time.Stamp[TrainRange]
 
   # Extract Hours field from Time.Stamp
   Hours <- as.numeric(format(Time.Stamp, '%H'))
@@ -56,8 +61,9 @@ getModelInputs <- function(InputData) {
   # the above literally has ZERO effect on the R2 score of the model
   # the below actually does positively affect the model's R2 score
 
-  shouldCalculateHolidays = require('timeDate') & require('RcppBDT')
+  shouldCalculateHolidays <- require('timeDate') & require('RcppBDT')
   if (shouldCalculateHolidays) {
+    # Holidays <- as.numeric(isHoliday(timeDate(InputData$DATE[TrainRange])))
     Holidays <- as.numeric(isHoliday(timeDate(InputData$DATE)))
     pres.day.2017 <- getNthDayOfWeek(third, Mon, Feb, 2017)
     pres.day.2017.idx <- grep(pres.day.2017, Time.Stamp)
