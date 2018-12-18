@@ -2,10 +2,19 @@ rm(list=ls()); cat("\014") # clear all
 
 library(RSelenium)
 library(XML)
+
+# I got much of my installation information 
+# from here: https://tecadmin.net/setup-selenium-chromedriver-on-ubuntu/
 # running selenium locally with chromedriver:
 # xvfb-run java -Dwebdriver.chrome.driver=/usr/bin/chromedriver -jar selenium-server-standalone-3.13.0.jar
+
+# http://rpubs.com/johndharrison/RSelenium-Basics
 # even more convenient (after installing docker):
 # sudo docker run -d -p 4444:4444 selenium/standalone-chrome
+#
+# note: I modified the docker command listed in the above url to make use of 
+# standalone-chrome. I didn't specify a colon or version and it grabbed "lastest"
+
 remDr <- remoteDriver(browserName = 'chrome', port = 4444)
 remDr$open()
 remDr$navigate('https://www.fandango.com')
